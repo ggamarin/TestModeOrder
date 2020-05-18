@@ -1,6 +1,7 @@
 package ru.netology.domain;
 
 import com.codeborne.selenide.Condition;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
@@ -9,10 +10,13 @@ import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.generator.UserGenerator.*;
 
 class RegistrationTest {
+    @BeforeEach
+    void Setup() {
+        open("http://localhost:9999");
+    }
 
     @Test
     void shouldSubmitActiveUser() {
-        open("http://localhost:9999");
         Registration validValidActiveUser = getValidActiveUser();
         $("[name=login]").setValue(validValidActiveUser.getLogin());
         $("[name=password]").setValue(validValidActiveUser.getPassword());
@@ -23,7 +27,6 @@ class RegistrationTest {
 
     @Test
     void shouldNotSubmitBlockedUser() {
-        open("http://localhost:9999");
         Registration validValidAcBlockedUser = getValidBlockedUser();
         $("[name=login]").setValue(validValidAcBlockedUser.getLogin());
         $("[name=password]").setValue(validValidAcBlockedUser.getPassword());
@@ -34,7 +37,6 @@ class RegistrationTest {
 
     @Test
     void shouldNotSubmitWithIncorrectPassword() {
-        open("http://localhost:9999");
         Registration userWithIncorrectPassword = getUserWithIncorrectPassword();
         $("[name=login]").setValue(userWithIncorrectPassword.getLogin());
         $("[name=password]").setValue(userWithIncorrectPassword.getPassword());
@@ -45,7 +47,6 @@ class RegistrationTest {
 
     @Test
     void shouldNotSubmitWithIncorrectLogin() {
-        open("http://localhost:9999");
         Registration userWithIncorrectLogin = getUserWithIncorrectLogin();
         $("[name=login]").setValue(userWithIncorrectLogin.getLogin());
         $("[name=password]").setValue(userWithIncorrectLogin.getPassword());

@@ -11,8 +11,6 @@ import ru.netology.domain.Registration;
 import java.util.Locale;
 
 public class UserGenerator {
-    private UserGenerator() {
-    }
 
     public static RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setBaseUri("http://localhost")
